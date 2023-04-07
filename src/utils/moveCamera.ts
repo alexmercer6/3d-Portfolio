@@ -1,4 +1,4 @@
-import { Group, Object3D, PerspectiveCamera } from 'three';
+import { Object3D, PerspectiveCamera } from 'three';
 
 export const moveCamera = (camera: PerspectiveCamera, model: Object3D) => {
   camera.position.x = model.position.x;

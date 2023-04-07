@@ -8,6 +8,5 @@ export const createFloor = () => {
   floor.rotation.x = degreesToRadians(90);
   floor.material.side = DoubleSide;
 
-  console.log('initialised');
   return floor;
 };

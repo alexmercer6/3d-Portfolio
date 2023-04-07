@@ -16,7 +16,7 @@ const init = () => {
   const camera = createCamera();
   const renderer = createRenderer();
   const scene = createScene();
-  const controls = createOrbitControls(camera, renderer?.domElement);
+  createOrbitControls(camera, renderer?.domElement);
 
   camera.position.set(0, 10, 20);
   camera.rotation.set(-Math.PI / 6, 0, 0);
