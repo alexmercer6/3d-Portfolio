@@ -7,7 +7,7 @@ export const createName = (scene: Scene) => {
   const loader = new FontLoader();
   let text;
 
-  loader.load('/static/fonts/helvetiker_bold.typeface.json', function (font) {
+  loader.load('/fonts/helvetiker_bold.typeface.json', function (font) {
     console.log(font);
     const geometry = new TextGeometry('Alex Mercer', {
       font: font,
