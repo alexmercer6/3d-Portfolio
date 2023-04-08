@@ -26,7 +26,7 @@ export const createName = (scene: Scene) => {
     geometry.center();
 
     text = new Mesh(geometry, material);
-    text.position.y = 10;
+    text.position.y = 20;
     text.position.z = 9;
     text.rotation.y = Math.PI;
     text.castShadow = true;

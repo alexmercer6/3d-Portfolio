@@ -12,11 +12,12 @@ import { createScene } from './components/setup/scene';
 import './style.css';
 import { moveModel } from './utils/moveModel';
 
+import { initialiseMouseControls } from './utils/moveCamera';
+
 const init = () => {
   const camera = createCamera();
   const renderer = createRenderer();
   const scene = createScene();
-  createOrbitControls(camera, renderer?.domElement);
 
   camera.position.set(0, 10, 20);
   camera.rotation.set(-Math.PI / 6, 0, 0);
@@ -48,8 +49,8 @@ const init = () => {
 
   //Lights
   const ambientLight = createAmbientLight();
-  const pointLight = createPointLight();
-  scene.add(ambientLight, pointLight);
+  const sun = createPointLight();
+  scene.add(ambientLight, sun);
 
   //Floor
   const floor = createFloor();
@@ -61,6 +62,8 @@ const init = () => {
   const player = createBox();
   player.position.y = 0.5;
   player.castShadow = true;
+  initialiseMouseControls(camera, player);
+
   scene.add(player);
 
   //Name
@@ -77,7 +80,7 @@ const init = () => {
     moveModel(keyboard, player);
 
     // position the camera behind the object
-    var cameraOffset = new Vector3(0, 5, -10);
+    var cameraOffset = new Vector3(0, 5, -15);
     cameraOffset.applyQuaternion(player.quaternion); // rotate offset by object's quaternion
     camera.position.copy(player.position).add(cameraOffset);
     camera.lookAt(player.position);

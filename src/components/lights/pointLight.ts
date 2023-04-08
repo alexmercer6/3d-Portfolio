@@ -1,7 +1,7 @@
 import { PointLight } from 'three';
 
 export const createPointLight = () => {
-  const pointLight: PointLight = new PointLight('#ffffff', 0.8);
+  const pointLight: PointLight = new PointLight('#ffffff', 1);
 
   pointLight.position.set(5, 8, 2);
 
