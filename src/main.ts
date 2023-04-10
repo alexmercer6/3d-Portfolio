@@ -13,6 +13,8 @@ import './style.css';
 import { moveModel } from './utils/moveModel';
 
 import { initialiseMouseControls } from './utils/moveCamera';
+import { loadFBXModel } from './components/3Dmodels/loadFBXModel';
+import { loadGLTF } from './components/3Dmodels/loadGLTF';
 
 const init = () => {
   const camera = createCamera();
@@ -62,9 +64,11 @@ const init = () => {
   const player = createBox();
   player.position.y = 0.5;
   player.castShadow = true;
-  initialiseMouseControls(camera, player);
+  // initialiseMouseControls(camera, player);
 
   scene.add(player);
+
+  loadGLTF(scene, 'models/robot.glb', camera);
 
   //Name
   createName(scene);
