@@ -1,6 +1,5 @@
 import { Vector3 } from 'three';
 import { createBox } from './components/box';
-import { createOrbitControls } from './components/controls/orbitControls';
 import { createFloor } from './components/elements/floor';
 import { createFog } from './components/elements/fog';
 import { createName } from './components/elements/name';
@@ -12,8 +11,6 @@ import { createScene } from './components/setup/scene';
 import './style.css';
 import { moveModel } from './utils/moveModel';
 
-import { initialiseMouseControls } from './utils/moveCamera';
-import { loadFBXModel } from './components/3Dmodels/loadFBXModel';
 import { loadGLTF } from './components/3Dmodels/loadGLTF';
 
 const init = () => {
