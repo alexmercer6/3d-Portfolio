@@ -1,11 +1,11 @@
-import { AnimationMixer, PerspectiveCamera, Scene } from 'three';
+import { PerspectiveCamera, Scene } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import { initialiseMouseControls } from '../../utils/moveCamera';
-let robotModel;
-let animations;
-let mixer;
-let idleAction, walkAction, runAction;
+// let robotModel;
+// let animations;
+// let mixer;
+// let idleAction, walkAction, runAction;
 // let idleWeight, walkWeight, runWeight;
 // let actions, settings;
 export const loadGLTF = (
@@ -30,17 +30,17 @@ export const loadGLTF = (
       scene.add(gltf.scene);
       initialiseMouseControls(camera, gltf.scene);
 
-      animations = gltf.animations; // Array<THREE.AnimationClip>
-      robotModel = gltf.scene; // THREE.Group
+      gltf.animations; // Array<THREE.AnimationClip>
+      gltf.scene; // THREE.Group
       gltf.scenes; // Array<THREE.Group>
       gltf.cameras; // Array<THREE.Camera>
       gltf.asset; // Object
 
-      mixer = new AnimationMixer(robotModel);
+      // mixer = new AnimationMixer(robotModel);
 
-      idleAction = mixer.clipAction(animations[0]);
-      walkAction = mixer.clipAction(animations[3]);
-      runAction = mixer.clipAction(animations[1]);
+      // idleAction = mixer.clipAction(animations[0]);
+      // walkAction = mixer.clipAction(animations[3]);
+      // runAction = mixer.clipAction(animations[1]);
 
       // actions = [idleAction, walkAction, runAction];
     },
