@@ -63,12 +63,12 @@ const init = () => {
   scene.add(floor);
 
   //Player
-  const player = createBox();
-  player.position.y = 0.5;
-  player.castShadow = true;
-  // initialiseMouseControls(camera, player);
+  // const player = createBox();
+  // player.position.y = 0.5;
+  // player.castShadow = true;
+  // // initialiseMouseControls(camera, player);
 
-  scene.add(player);
+  // scene.add(player);
 
   loadGLTF(scene, 'models/robot.glb');
 
