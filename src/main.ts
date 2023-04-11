@@ -11,14 +11,7 @@ import { createScene } from './components/setup/scene';
 import './style.css';
 import { moveModel } from './utils/moveModel';
 
-import {
-  activeAction,
-  activeModel,
-  loadGLTF,
-  mixer,
-} from './components/3Dmodels/loadGLTF';
-import { createOrbitControls } from './components/controls/orbitControls';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { activeModel, loadGLTF, mixer } from './components/3Dmodels/loadGLTF';
 
 const init = () => {
   let cameraZAxis = 15;
