@@ -1,4 +1,4 @@
-import { Vector3 } from 'three';
+import { Clock, Vector3 } from 'three';
 import { createBox } from './components/box';
 import { createFloor } from './components/elements/floor';
 import { createFog } from './components/elements/fog';
@@ -11,15 +11,21 @@ import { createScene } from './components/setup/scene';
 import './style.css';
 import { moveModel } from './utils/moveModel';
 
-import { loadGLTF } from './components/3Dmodels/loadGLTF';
+import {
+  activeAction,
+  activeModel,
+  loadGLTF,
+  mixer,
+} from './components/3Dmodels/loadGLTF';
+import { createOrbitControls } from './components/controls/orbitControls';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 const init = () => {
+  let cameraZAxis = 15;
   const camera = createCamera();
   const renderer = createRenderer();
   const scene = createScene();
-
-  camera.position.set(0, 10, 20);
-  camera.rotation.set(-Math.PI / 6, 0, 0);
+  const clock = new Clock();
 
   //Events
   // Resize the canvas when the window changes
@@ -41,6 +47,12 @@ const init = () => {
   window.addEventListener('keyup', (event: KeyboardEvent) => {
     keyboard[event.code] = false;
   });
+
+  const onMouseWheel = (event: any) => {
+    console.log(cameraZAxis);
+    cameraZAxis += event.deltaY * -0.01;
+  };
+  document.addEventListener('wheel', onMouseWheel, false);
 
   //Fog
   const fog = createFog();
@@ -65,7 +77,7 @@ const init = () => {
 
   scene.add(player);
 
-  loadGLTF(scene, 'models/robot.glb', camera);
+  loadGLTF(scene, 'models/robot.glb');
 
   //Name
   createName(scene);
@@ -78,13 +90,15 @@ const init = () => {
 
   function animate() {
     requestAnimationFrame(animate);
-    moveModel(keyboard, player);
+    var cameraOffset = new Vector3(0, 5, -cameraZAxis);
 
-    // position the camera behind the object
-    var cameraOffset = new Vector3(0, 5, -15);
-    cameraOffset.applyQuaternion(player.quaternion); // rotate offset by object's quaternion
-    camera.position.copy(player.position).add(cameraOffset);
-    camera.lookAt(player.position);
+    const delta = clock.getDelta();
+    moveModel(keyboard, activeModel);
+
+    if (mixer) mixer.update(delta);
+
+    camera.position.copy(activeModel.position).add(cameraOffset);
+    camera.lookAt(activeModel.position);
 
     renderer?.render(scene, camera);
   }

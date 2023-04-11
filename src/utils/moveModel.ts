@@ -7,11 +7,11 @@ export const moveModel = (
 ) => {
   if (keyboard['KeyQ']) {
     // Rotate the model around its y-axis
-    model.rotateY(0.03);
+    model.rotateY(0.05);
   }
   if (keyboard['KeyE']) {
     // Rotate the model around its y-axis
-    model.rotateY(-0.03);
+    model.rotateY(-0.05);
   }
   if (keyboard['KeyW']) {
     // Get the model's forward direction in world space
@@ -41,9 +41,9 @@ export const moveModel = (
   // Jumping
   const t1 = gsap.timeline();
   if (keyboard['Space']) {
-    t1.to(model.position, { y: 3, ease: 'sine.out' }).to(model.position, {
-      y: 0.5,
-      ease: 'sine.in',
+    t1.to(model.position, { y: 5 }).to(model.position, {
+      y: 0,
+      // ease: 'sine.in',
     });
   }
 };
